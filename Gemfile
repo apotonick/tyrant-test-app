@@ -26,6 +26,7 @@ gem "trailblazer-rails"
 gem "cells-rails"
 gem "trailblazer-cells"
 gem "cells-erb"
+gem "simple_form"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

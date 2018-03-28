@@ -1,1 +1,7 @@
-yo
+<h2>Sign up for ... whatever</h2>
+
+<%= simple_form_for model, as: :user, url: "/signup" do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.button :submit %>
+<% end %>
