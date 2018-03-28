@@ -22,6 +22,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bcrypt', '~> 3.1.7'
 
 gem "trailblazer", ">= 2.1.0.beta5"
+gem "trailblazer-rails"
+gem "cells-rails"
 gem "trailblazer-cells"
 gem "cells-erb"
 
