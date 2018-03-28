@@ -15,5 +15,8 @@ module User::Operation
 
     step Nested(Present)
     step Contract::Validate( key: :user )
+
+    step ->(ctx, **) { ctx[:password] = ctx["contract.default"] }
+    step Trailblazer::Activity::DSL::Helper.Subprocess(Tyrant::Signup::Password), id: :signup
   end
 end

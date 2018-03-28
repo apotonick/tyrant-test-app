@@ -27,6 +27,7 @@ gem "cells-rails"
 gem "trailblazer-cells"
 gem "cells-erb"
 gem "simple_form"
+gem "tyrant", path: "../tyrant"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
