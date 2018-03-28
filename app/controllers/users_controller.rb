@@ -27,7 +27,10 @@ class UsersController < ApplicationController
   end
 
   def forgot
-    result = run User::Operation::ForgotPassword
+    result = run User::Operation::ForgotPassword do |res|
+      # res[:token]
+      return render cell(User::Cell::ResetResponse, res, layout: Pro::Cell::Layout), layout: false
+    end
 
     render cell(User::Cell::ForgotPassword, result["contract.default"], layout: Pro::Cell::Layout), layout: false
   end
