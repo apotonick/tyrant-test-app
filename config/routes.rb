@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   get  "/signup", to: "users#signup_form"
   post "/signup", to: "users#signup"
+
+  get "/my",      to: "users#dashboard"
 end
