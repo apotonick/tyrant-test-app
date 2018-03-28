@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get  "/signup",  to: "users#signup_form"
   post "/signup",  to: "users#signup"
   get  "/signout", to: "users#signout"
+  get  "/forgot",  to: "users#forgot_form"
+  post "/forgot",  to: "users#forgot"
 
-  get "/my",      to: "users#dashboard"
+  get "/my",       to: "users#dashboard"
 end

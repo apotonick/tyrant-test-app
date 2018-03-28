@@ -20,6 +20,18 @@ class UsersController < ApplicationController
     redirect_to "/signup"
   end
 
+  def forgot_form
+    result = run User::Operation::ForgotPassword::Present
+
+    render cell(User::Cell::ForgotPassword, result["contract.default"], layout: Pro::Cell::Layout), layout: false
+  end
+
+  def forgot
+    result = run User::Operation::ForgotPassword
+
+    render cell(User::Cell::ForgotPassword, result["contract.default"], layout: Pro::Cell::Layout), layout: false
+  end
+
   def dashboard
     raise unless session[:user_id]
 
