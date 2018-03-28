@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     render cell(User::Cell::Signup, result["contract.default"], layout: Pro::Cell::Layout), layout: false
   end
 
+  def signout
+    session[:user_id] = nil
+    redirect_to "/signup"
+  end
+
   def dashboard
     raise unless session[:user_id]
 

@@ -1,7 +1,7 @@
 module User::Operation
   class Signup < Trailblazer::Operation
     class Form < Reform::Form
-      property :email,    virtual
+      property :email
       property :password, virtual: true
 
       validates :email,    presence: true
