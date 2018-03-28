@@ -9,7 +9,7 @@ module User::Operation
     end
 
     class Present < Trailblazer::Operation
-      step Model( OpenStruct, :new )
+      step Model( User, :new )
       step Contract::Build( constant: Form )
     end
 
@@ -18,5 +18,7 @@ module User::Operation
 
     step ->(ctx, **) { ctx[:password] = ctx["contract.default"] }
     step Trailblazer::Activity::DSL::Helper.Subprocess(Tyrant::Signup::Password), id: :signup
+    step ->(ctx, model:, auth:, **) { model.auth_data = auth.to_h }
+    step Contract::Persist()
   end
 end
