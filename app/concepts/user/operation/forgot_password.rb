@@ -27,7 +27,8 @@ module User::Operation
     end
 
     def send_email_with_token(ctx, token:, model:, **)
-      ctx[:email_txt] = "Go here to recover: http://localhost:3000/reset/#{token}/#{model.id}"
+      url = %{http://localhost:3000/reset/#{token}/#{model.id}}
+      ctx[:email_txt] = %{Go here to recover: <a href="#{url}">#{url}</a>}
     end
   end
 end

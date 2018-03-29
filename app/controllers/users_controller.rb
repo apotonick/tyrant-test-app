@@ -35,6 +35,23 @@ class UsersController < ApplicationController
     render cell(User::Cell::ForgotPassword, result["contract.default"], layout: Pro::Cell::Layout), layout: false
   end
 
+  def reset_form
+    result = run User::Operation::ResetPassword::Present do |res|
+      return render cell(User::Cell::ResetPassword, res["contract.default"], url: "/reset/#{res[:token]}/#{res[:model].id}", layout: Pro::Cell::Layout), layout: false
+    end
+
+    render html: "The reset link in invalid.", layout: false
+    # redirect_to "/signup"
+  end
+
+  def reset
+    result = run User::Operation::ResetPassword do |res|
+      return redirect_to "/signin"
+    end
+
+    render cell(User::Cell::ResetPassword, result["contract.default"], url: "/reset/#{result[:token]}/#{result[:model].id}", layout: Pro::Cell::Layout), layout: false
+  end
+
   def dashboard
     raise unless session[:user_id]
 
