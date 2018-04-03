@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  private def login!(user)
+    session[:user_id] = user.id # actually "sign in".
+  end
+
   def signup_form
     result = run User::Operation::Signup::Present
 
@@ -7,7 +11,7 @@ class UsersController < ApplicationController
 
   def signup
     result = run User::Operation::Signup do |res|
-      session[:user_id] = res[:model].id # actually "sign in".
+      login!(res[:model])
 
       return redirect_to "/my"
     end
@@ -18,6 +22,22 @@ class UsersController < ApplicationController
   def signout
     session[:user_id] = nil
     redirect_to "/signup"
+  end
+
+  def signin_form
+    result = run User::Operation::Signin::Present
+
+    render cell(User::Cell::Signin, result["contract.default"], layout: Pro::Cell::Layout), layout: false
+  end
+
+  def signin
+    result = run User::Operation::Signin do |res|
+      login!(res[:model])
+
+      return redirect_to "/my"
+    end
+
+    render cell(User::Cell::Signin, result["contract.default"], layout: Pro::Cell::Layout), layout: false
   end
 
   def forgot_form

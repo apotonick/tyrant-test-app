@@ -1,0 +1,13 @@
+<h2>Sign in</h2>
+
+<%= simple_form_for model, as: :user, url: "/signin" do |f| %>
+  <%= f.input :email, required: false %>
+  <%= f.input :password, required: false %>
+  <%= f.button :submit, "Login" %>
+<% end %>
+
+<div class="row">
+  <%= link_to "Forgot password?", "/forgot" %>
+</div>
+
+<%= CGI.escape_html model.inspect %>

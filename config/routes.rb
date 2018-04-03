@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post "/forgot",  to: "users#forgot"
   get  "/reset/:token/:id",  to: "users#reset_form", token: /[^\/]+/
   patch "/reset/:token/:id",  to: "users#reset", token: /[^\/]+/
+  get  "/signin", to: "users#signin_form"
+  post "/signin", to: "users#signin"
 
   get "/my",       to: "users#dashboard"
 end
